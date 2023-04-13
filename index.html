@@ -13,7 +13,44 @@
     
     <script>
 
-        
+        //GAME SOLUTION
+        function playRound (playerSelection, computerSelection) {
+            console.warn('Starting the game!');
+            console.log('Your oponent choose: ' + computerSelection);
+            console.log('You choose: ' + playerSelection);      
+
+            switch (playerSelection) {
+                case "Rock":
+                    if (computerSelection === 'Paper') {
+                        return 'You Lose! Paper beats Rock';  
+                    } else if (computerSelection === 'Rock') {
+                        return 'Tied! Rock doesn`t beats Rock';  
+                    } else if (computerSelection === 'Scissors'){
+                        return 'You Win! Rock beats Scissors';  
+                    }
+                    break;
+                case "Paper":
+                    if (computerSelection === 'Scissors') {
+                        return 'You Lose! Scissors beats Paper';  
+                    } else if (computerSelection === 'Paper') {
+                        return 'Tied! Paper doesn`t beats Paper';  
+                    } else if (computerSelection === 'Rock'){
+                        return 'You Win! Paper beats Rock';  
+                    }
+                    break
+                case "Scissors":
+                    if (computerSelection === 'Rock') {
+                        return 'You Lose! Rock beats Scissors';  
+                    } else if (computerSelection === 'Scissors') {
+                        return 'Tied! Scissors doesn`t beats Scissors';  
+                    } else if (computerSelection === 'Paper'){
+                        return 'You Win! Scissors beats Paper';  
+                    }   
+                    break;
+                default:
+                    return 'Maybe the name you said is wrong. Can you please say it again?';
+            }
+        }
 
         //COMPUTER ROLL:
         const options = ['Rock', 'Paper', 'Scissors'];
