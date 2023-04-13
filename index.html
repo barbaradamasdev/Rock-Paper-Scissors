@@ -8,7 +8,8 @@
 </head>
 <body>
 
-    
+    <input type="text" id="playerSelection" placeholder="Choose one between: Rock, Paper or Scissors!">
+    <button onclick="inputPlayerSelection();">Submit</button>
     
     <script>
 
@@ -30,7 +31,24 @@
         let computerSelection = getComputerChoice();
         console.log('Computer selection: ' + computerSelection);
 
-        
+        //PLAYER ROLL:
+        var playerSelection;
+        //var playerSelection = prompt('Say the option');
+        function inputPlayerSelection() {
+            playerSelection = document.getElementById('playerSelection').value;
+
+            //Capitalize only first letter
+            const firstLetter = playerSelection.charAt(0)
+            const firstLetterCap = firstLetter.toUpperCase()
+            const remainingLetters = playerSelection.slice(1)
+            const remainingLettersLow = remainingLetters.toLowerCase()
+            playerSelection = firstLetterCap + remainingLettersLow
+            console.log('Player selection: ' + playerSelection);         
+            
+            //Begin the game
+            console.log(playRound(playerSelection, getComputerChoice(computerSelection)));
+
+        }
         
     </script>
     
