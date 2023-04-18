@@ -4,15 +4,170 @@
 }
 
 body {
-  background: url(images/background-line2.jpg) no-repeat 95% 50%;
+  background: url(images/bg-back.jpg) no-repeat;
   background-position: center;
   background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
+
+.flex {
+  display: flex;
+}
+
+button {
+  cursor: pointer;
+}
+
 main {
-  background-image: url(images/background-line2.jpg);
+  background-image: url(images/bg-principal.jpg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 100vw;
+  max-width: 70%;
+  min-width: 1054px;
   height: 100vh;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Button Play, normal state and after hover state */
+main #playButton,
+main #playButton:hover::after {
+  padding: 30px;
+  font-size: 2rem;
+  border-radius: 10px;
+  transition-duration: 250ms;
+  transition-delay: 20ms;
+  border: 2px solid rgba(0, 128, 0, 0.548);
+  background-color: rgba(255, 190, 166, 0.856);
+  z-index: 1;
+  margin: auto;
+  position: relative;
+}
+
+/* Button play with hover */
+main #playButton:hover {
+  background-color: rgba(0, 128, 0, 0.548);
+  border: 5px solid rgba(99, 50, 4, 0.555);
+  transform: scale(1.1);
+  transition-duration: 250ms;
+  transition-delay: 20ms;
+}
+
+.robotButton {
+  position: absolute;
+  visibility: hidden;
+  top: -50px;
+  left: -10px;
+}
+
+.dannyButton {
+  position: absolute;
+  visibility: hidden;
+  top: -50px;
+  left: 30px;
+}
+
+main #playButton:hover .robotButton {
+  visibility: visible;
+  animation: runRobot 3s 25;
+}
+
+main #playButton:hover .dannyButton {
+  visibility: visible;
+  animation: runDanny 2s 25;
+}
+
+@keyframes runDanny {
+  0% {
+    left: 20px;
+  }
+  50% {
+    left: 320px;
+  }
+  100% {
+    left: -30px;
+  }
+}
+
+@keyframes runRobot {
+  0% {
+    left: 20px;
+  }
+  50% {
+    left: 300px;
+  }
+  100% {
+    left: -10px;
+  }
+}
+
+.danny,
+.robot {
+  position: absolute;
+}
+
+.danny {
+  top: 80vh;
+  left: 20px;
+}
+
+.robot {
+  top: 67vh;
+  left: 45px;
+}
+
+.choices {
+  display: none;
+  margin-top: 120px;
+  justify-content: center;
+  margin: 10px auto 140px;
+}
+
+.choiceButton {
+  font-size: 1rem;
+  padding: 15px 20px;
+  margin: 10px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.082);
+}
+
+.choiceButton:hover {
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.082);
+  background-color: white;
+}
+
+.startText {
+  display: none;
+}
+.instructionsText {
+  background-color: rgba(240, 255, 255, 0.5);
+  padding: 10px 50px;
+}
+
+.instructionsText h1,
+.instructionsText p {
+  margin: 10px;
+}
+
+#start {
+  padding: 10px 30px;
+  font-size: 1rem;
+  margin: 20px auto 150px;
+  border-radius: 5px;
+  transition-duration: 250ms;
+  transition-delay: 20ms;
+  border: 2px solid rgba(0, 128, 0, 0.548);
+  background-color: rgba(255, 190, 166, 0.856);
+}
+
+main #start:hover {
+  background-color: rgba(0, 128, 0, 0.89);
+  border: 2px solid rgba(99, 50, 4, 0.555);
+  color: white;
+  transform: scale(1);
+  transition-duration: 250ms;
+  transition-delay: 20ms;
 }

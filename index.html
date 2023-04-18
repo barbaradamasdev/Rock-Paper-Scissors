@@ -4,14 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Fight the robot!</title>
 </head>
 <body>
-    <main>
-        <button onclick="game();">Let`s Play?</button>
+    <main class="flex">
+        <button id="playButton" onclick="start();">Do you wanna play?</button>
+        <div class="startText">
+            <div class="instructionsText">
+                <h1 class="welcome">Welcome</h1>
+                <p>Danny needs help! He found a danger robot and need to run to the finished line. Help him!</p>
+                <ul>
+                    <li><p>Danny found on his pocket a <strong>knife</strong> he used to cut a apple before;</p></li>
+                    <li><p>He also found a <strong>toilet paper</strong>, maybe the can use to cover the robot`s vision;</p></li>
+                    <li><p>And he picked up a <strong>stone</strong> from the ground.</p></li>
+                </ul>
+                <p><strong>Use this weapons to finished the race!</strong></p>
+            </div>
+            
+            <button id="start" onclick="show();">Ok, Let's go!</button>
+
+            <div class="choices flex">
+                <button class="choiceButton rock" id="btnChoice" onclick="playRound('Rock')" value="Rock"><img src="images/stone.png" style="width: 100px;"></button>
+                <button class="choiceButton paper" id="btnChoice" onclick="playRound('Paper')" value="Paper"><img src="images/paper.png" style="width: 100px;"></button>
+                <button class="choiceButton knife" id="btnChoice" onclick="playRound('Knife')" value="Knife"><img src="images/knife.png" style="width: 100px;"></button>
+            </div>
+        </div>
     </main>
-    
+    <script src="script.js"></script>
 </body>
 </html>
