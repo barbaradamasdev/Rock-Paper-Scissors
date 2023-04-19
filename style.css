@@ -110,12 +110,20 @@ main #playButton:hover .dannyButton {
 
 .danny {
   top: 80vh;
-  left: 20px;
+  left: var(--position0);
 }
 
 .robot {
   top: 67vh;
-  left: 45px;
+  left: var(--position0);
+}
+
+:root {
+  --position0: 3%;
+  --position1: 25%;
+  --position2: 50%;
+  --position3: 75%;
+  --position4: 100%;
 }
 
 .choices {
@@ -125,7 +133,7 @@ main #playButton:hover .dannyButton {
   margin: 10px auto 140px;
 }
 
-.choiceButton {
+.choices button {
   font-size: 1rem;
   padding: 15px 20px;
   margin: 10px;
@@ -134,7 +142,7 @@ main #playButton:hover .dannyButton {
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.082);
 }
 
-.choiceButton:hover {
+.choices button:hover {
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.082);
   background-color: white;
 }
