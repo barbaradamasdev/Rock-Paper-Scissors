@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 * {
   margin: auto;
   box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
 }
 
 body {
@@ -35,7 +38,7 @@ main {
 main #playButton,
 main #playButton:hover::after {
   padding: 30px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 10px;
   transition-duration: 250ms;
   transition-delay: 20ms;
@@ -160,6 +163,15 @@ main #playButton:hover .dannyButton {
   margin: 10px;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
+.instructionsText p {
+  font-size: 0.8rem;
+  line-height: 20px;
+}
+
 #start {
   padding: 10px 30px;
   font-size: 1rem;
@@ -178,4 +190,74 @@ main #start:hover {
   transform: scale(1);
   transition-duration: 250ms;
   transition-delay: 20ms;
+}
+
+.winnerScreen {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background-image: url(images/confetti.png);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+
+  -webkit-animation: slidein 200s;
+  animation: slidein 100s;
+
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+
+@keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 1050px;
+  }
+}
+
+.trophy {
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 30%;
+  z-index: 1;
+}
+
+.messageWinner,
+.messageLoser {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 65%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.863);
+  width: 600px;
+  color: gold;
+  font-size: 1rem;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  line-height: 30px;
 }

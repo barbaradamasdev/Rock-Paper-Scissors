@@ -63,8 +63,41 @@ function show () {
     choices.before(chooseYourWeapon);
 }
 
-function theEnd () {
+//Winner screen
+const winnerScreen = document.createElement('div');
+winnerScreen.className = 'winnerScreen';
+winnerScreen.style.display = 'none';
+main.before(winnerScreen);
 
+var trophy = new Image (250, 300);
+trophy.src = 'images/trophyWinner.png';
+trophy.className = 'trophy'
+winnerScreen.appendChild(trophy);
+
+function theEnd () {
+    danny.style.display ='none';
+    robot.style.display ='none';
+    
+    startText.style.display = 'none'
+    winnerScreen.style.display = 'inherit';
+    
+    if (winner = 'danny') {
+        const messageWinner = document.createElement('h1');
+        messageWinner.textContent = "You win! You did it!";
+        messageWinner.className = 'messageWinner';
+        main.before(messageWinner);
+    }
+    if (winner = 'robot') {
+        const messageLoser = document.createElement('h1');
+        messageLoser.textContent = "You lose! Humanity will be destroy! Shame on you";
+        messageLoser.className = 'messageLoser';
+        main.before(messageLoser);
+
+        trophy.style.display = 'none';
+        winnerScreen.style.backgroundImage ='url(images/lose02.gif)'
+        winnerScreen.style.animation = 'none';
+    }
+    
 }
 
 //COMPUTER - random roll function:
@@ -81,19 +114,22 @@ function nextPosition () {
     switch (positionWinner) {
         case "var(--position0)":
             positionWinner = "var(--position1)";
+            console.log(winner + 'agora na posicao 1')
             return positionWinner;
         case "var(--position1)":
             positionWinner = "var(--position2)";
+            console.log(winner + 'agora na posicao 2')
             return positionWinner;
         case "var(--position2)":
             positionWinner = "var(--position3)";
+            console.log(winner + 'agora na posicao 3')
             return positionWinner;
         case "var(--position3)":
             positionWinner = "var(--position4)";
-            return positionWinner;
-        case "var(--position4)": //and fulano is winner
+            console.log(winner + 'agora na posicao 4 -ganhou')
             console.log('YOU DIT IT!');
-            return theEnd('danny');
+            theEnd (winner);
+            return positionWinner;
     }
 }
 
