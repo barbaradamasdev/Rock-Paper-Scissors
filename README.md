@@ -42,8 +42,3 @@ The idea was good and I know the execution could (always) be better, but I'm rig
 Bárbara Damasceno - barbaradamas.dev@gmail.com
 
 ![The joy of do it](robotWinning03.gif)
-
-
-Email | 
-    ---------|----------
-    Bárbara Damasceno - barbaradamas.dev@gmail.com      | ![The joy of do it](robotWinning03.gif)
