@@ -353,7 +353,13 @@ main #start:hover {
     margin-left: -40px;
   }
 
+  #infobtn,
+  #infobtn:hover {
+    transform: scale(0.7);
+  }
+
   #infoText {
+    transform: scale(0.8);
     right: 20px;
   }
 }
@@ -369,5 +375,17 @@ main #start:hover {
 @media (max-width: 365px) {
   .choices {
     flex-direction: row;
+  }
+}
+
+/* Alternative to phone with low height */
+@media (max-height: 665px) {
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    background-position: bottom;
+    height: 95vh;
   }
 }
