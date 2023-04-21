@@ -13,7 +13,7 @@ This is my first creation, a project in HTML, CSS and JS, a challenge from [The 
 The objective of this challenge was to interactive with JavaScript and use it with the game Rock, Paper and Scissors.
 
 The idea was good and I know the execution could (always) be better, but I'm rigth now very excited to do this!
-![The joy of do it](.goodjob1.gif)
+![The joy of do it](goodjob1.gif)
 
 ## 💾 Technologies Used:
 
@@ -39,5 +39,5 @@ The idea was good and I know the execution could (always) be better, but I'm rig
 ## 🐼 Author
 
 Bárbara Damasceno - barbaradamas.dev@gmail.com
-![The joy of do it](.robotWinning03.gif)
+![The joy of do it](robotWinning03.gif)
 
