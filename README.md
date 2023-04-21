@@ -43,3 +43,7 @@ Bárbara Damasceno - barbaradamas.dev@gmail.com
 
 ![The joy of do it](robotWinning03.gif)
 
+
+Email | 
+    ---------|----------
+    Bárbara Damasceno - barbaradamas.dev@gmail.com      | ![The joy of do it](robotWinning03.gif)
