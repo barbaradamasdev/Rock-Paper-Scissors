@@ -41,6 +41,7 @@ let positionRobot;
 let positionWinner;
 const options = ['rock', 'paper', 'knife'];
 
+const raceSong = document.createElement ('audio');
 //Function to show instructions and weapons
 function start() {
     button.style.display ='none';
@@ -48,17 +49,25 @@ function start() {
     startText.style.flexDirection ='column';
     positionDanny = danny.style.left;
     positionRobot = robot.style.left;
+
+    raceSong.src = 'audio/raceSong.mp3';
+    raceSong.autoplay = 'true';
+    main.appendChild(raceSong);
+    
+    raceSong.play();
 } 
 
+const chooseYourWeapon = document.createElement ('h1'); 
 //After instructions, function to show weapons choices
 function show () {
     //Hide text and button, show choices buttons
     choices.style.display ='inherit'; 
     instructionsText.style.display ='none';
     startButton.style.display ='none';
+    startText.style.backgroundColor = 'rgba(0, 0, 0, 0.767)';
+    startText.style.color = 'white';
     
     //title 'Choose your weapon' before choices button
-    const chooseYourWeapon = document.createElement ('h1'); 
     chooseYourWeapon.textContent = 'Choose your weapon:';
     choices.before(chooseYourWeapon);
 }
@@ -81,21 +90,47 @@ function theEnd () {
     startText.style.display = 'none'
     winnerScreen.style.display = 'inherit';
     
-    if (winner = 'danny') {
+    if (winner === 'danny') {
         const messageWinner = document.createElement('h1');
-        messageWinner.textContent = "You win! You did it!";
+        messageWinner.textContent = "You won! The robot was destroyed, you saved the world!";
         messageWinner.className = 'messageWinner';
         main.before(messageWinner);
-    }
-    if (winner = 'robot') {
+        
+        const winnerSound = document.createElement ('audio');
+        winnerSound.src = 'audio/winnerSound.mp3';
+        winnerSound.autoplay = 'true';
+        winnerScreen.appendChild(winnerSound);
+
+        raceSong.currentTime = 0;
+        raceSong.pause();
+        raceSong.remove();
+
+        winnerSound.play();
+        winnerScreen.style.backgroundImage ='url(images/winnerScreenEnd.gif)'
+    } else if (winner === 'robot') {
         const messageLoser = document.createElement('h1');
-        messageLoser.textContent = "You lose! Humanity will be destroy! Shame on you";
+        messageLoser.textContent = "You lose! Humanity will be destroyed! Shame on you";
         messageLoser.className = 'messageLoser';
         main.before(messageLoser);
+        
+        const loserSound = document.createElement ('audio');
+        loserSound.src = 'audio/loserSound.mp3';
+        loserSound.autoplay = 'true';
+        winnerScreen.appendChild(loserSound);
+        
+        const loserSound2 = document.createElement ('audio');
+        loserSound2.src = 'audio/loserSound2.mp3';
+        loserSound2.autoplay = 'true';
+        winnerScreen.appendChild(loserSound2);
 
+        raceSong.currentTime = 0;
+        raceSong.pause();
+        raceSong.remove();
+
+        loserSound.play();
+        loserSound2.play();
         trophy.style.display = 'none';
-        winnerScreen.style.backgroundImage ='url(images/lose02.gif)'
-        winnerScreen.style.animation = 'none';
+        winnerScreen.style.backgroundImage ='url(images/loseScreenEnd.gif)'
     }
     
 }
@@ -108,43 +143,41 @@ function getComputerSelection() {
     return computerSelection = options[Math.floor(Math.random() * options.length)];
 }
 
+//MOVE CHARACTERS
 function nextPosition () {
-    if (winner === 'robot') {positionWinner = positionRobot};
-    if (winner === 'danny') {positionWinner = positionDanny};
+    if (winner === 'robot') {
+        positionWinner = positionRobot
+    } else if (winner === 'danny') {
+        positionWinner = positionDanny
+    };
     switch (positionWinner) {
         case "var(--position0)":
             positionWinner = "var(--position1)";
-            console.log(winner + 'agora na posicao 1')
             return positionWinner;
         case "var(--position1)":
             positionWinner = "var(--position2)";
-            console.log(winner + 'agora na posicao 2')
             return positionWinner;
         case "var(--position2)":
             positionWinner = "var(--position3)";
-            console.log(winner + 'agora na posicao 3')
             return positionWinner;
         case "var(--position3)":
             positionWinner = "var(--position4)";
-            console.log(winner + 'agora na posicao 4 -ganhou')
-            console.log('YOU DIT IT!');
             theEnd (winner);
-            return positionWinner;
+            break;
     }
 }
 
-
-
 //PLAYROUND:
+let resultMessage = document.createElement ('div');
+let message = document.createElement ('h1')
+let imageLose = new Image (250, 250);
 function playRound (input) {
     playerSelection = input;           
     computerSelection = getComputerSelection();
-    console.warn('partida nova');
+    console.warn('Partida nova');
     console.log('Danny choose: ' + playerSelection);      
     
     //This was a solution to avoid tied
-    //Maybe is not fair enough with the player
-    //The computer have other chance to play (but it is honest, so worked!)
     if(playerSelection === computerSelection) {
         computerSelection = getComputerSelection();
     }
@@ -153,6 +186,20 @@ function playRound (input) {
     switch (playerSelection) {
     case "rock":
         if (computerSelection === 'paper') {
+            
+            /* Message winner/loser of round */
+            chooseYourWeapon.style.display ='none';
+            resultMessage.style.display ='flex';
+            resultMessage.className = 'resultMessage';
+            choices.before(resultMessage);
+
+            message.textContent = 'You lose, LOL! Sorry, choose the next one';
+            resultMessage.appendChild(message);
+
+            imageLose.src = 'images/robotWinning0.gif';
+            resultMessage.appendChild(imageLose);
+            /* End of message winner/loser of round */
+
             console.log('You Lose! Paper beats Rock');  
             winner = 'robot';
 
@@ -161,9 +208,20 @@ function playRound (input) {
 
             robot.style.transitionDuration = '1s';
             return positionRobot;
-        /* } else if (computerSelection === 'rock') {
-            console.log('Tied! Rock doesn`t beats Rock');   */
         } else if (computerSelection === 'knife'){
+            /* Message winner/loser of round */
+            chooseYourWeapon.style.display ='none';
+            resultMessage.style.display ='flex';
+            resultMessage.className = 'resultMessage';
+            choices.before(resultMessage);
+
+            message.textContent = 'You dit it! Nailed it! Choose the next one';
+            resultMessage.appendChild(message);
+
+            imageLose.src = 'images/goodjob0.gif';
+            resultMessage.appendChild(imageLose);
+            /* End of message winner/loser of round */
+
             console.log('You Win! Rock beats Knife');  
             winner = 'danny';
 
@@ -176,6 +234,20 @@ function playRound (input) {
         break;
     case "paper":
         if (computerSelection === 'knife') {
+            /* Message winner/loser of round */
+            chooseYourWeapon.style.display ='none';
+            resultMessage.style.display ='flex';
+            resultMessage.className = 'resultMessage';
+            choices.before(resultMessage);
+
+            message.textContent = 'This was terrible, You tried to use the toilet paper, but the robot threw the rock and tore the paper! Choose the next one';
+            message.style.fontSize = '1rem';
+            resultMessage.appendChild(message);
+
+            imageLose.src = 'images/robotWinning1.gif';
+            resultMessage.appendChild(imageLose);
+            /* End of message winner/loser of round */
+
             console.log('You Lose! Knife beats Paper'); 
             winner = 'robot';
 
@@ -184,9 +256,19 @@ function playRound (input) {
 
             robot.style.transitionDuration = '1s';
             return positionRobot;
-        /* } else if (computerSelection === 'paper') {
-            console.log('Tied! Paper doesn`t beats Paper');   */
         } else if (computerSelection === 'rock'){
+            /* Message winner/loser of round */
+            chooseYourWeapon.style.display ='none';
+            resultMessage.style.display ='flex';
+            resultMessage.className = 'resultMessage';
+            choices.before(resultMessage);
+
+            message.textContent = 'Tha paper envolved the rock, this make total sense, you dit it! Choose the next one';
+            resultMessage.appendChild(message);
+
+            imageLose.src = 'images/goodjob3.gif';
+            resultMessage.appendChild(imageLose);
+            /* End of message winner/loser of round */
             console.log('You Win! Paper beats Rock');  
             winner = 'danny';
 
@@ -199,6 +281,19 @@ function playRound (input) {
         break
     case "knife":
         if (computerSelection === 'rock') {
+            /* Message winner/loser of round */
+            chooseYourWeapon.style.display ='none';
+            resultMessage.style.display ='flex';
+            resultMessage.className = 'resultMessage';
+            choices.before(resultMessage);
+
+            message.textContent = 'He used a stone to deflect the blade of your knife! Try again!';
+            resultMessage.appendChild(message);
+
+            imageLose.src = 'images/robotWinning2.gif';
+            resultMessage.appendChild(imageLose);
+            /* End of message winner/loser of round */
+
             console.log('You Lose! Rock beats Knife');  
             winner = 'robot';
 
@@ -207,9 +302,19 @@ function playRound (input) {
 
             robot.style.transitionDuration = '1s';
             return positionRobot;
-        /* } else if (computerSelection === 'knife') {
-            console.log('Tied! Knife doesn`t beats Knife');  */ 
         } else if (computerSelection === 'paper'){
+             /* Message winner/loser of round */
+             chooseYourWeapon.style.display ='none';
+             resultMessage.style.display ='flex';
+             resultMessage.className = 'resultMessage';
+             choices.before(resultMessage);
+ 
+             message.textContent = 'You totally nailed it! You rent the paper he threw. Amazing!';
+             resultMessage.appendChild(message);
+ 
+             imageLose.src = 'images/goodjob1.gif';
+             resultMessage.appendChild(imageLose);
+             /* End of message winner/loser of round */
             console.log('You Win! Knife beats Paper');  
             winner = 'danny';
 
