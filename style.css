@@ -8,7 +8,7 @@
 
 body {
   background: url(images/bg-back.jpg) no-repeat;
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -23,18 +23,17 @@ button {
 }
 
 main {
+  position: relative;
   background-image: url(images/bg-principal.jpg);
-  background-position: center;
-  background-size: contain;
+  background-position: bottom;
+  background-size: cover;
   background-repeat: no-repeat;
-  max-width: 70%;
-  min-width: 1054px;
+  max-width: 1500px;
   height: 100vh;
   flex-direction: column;
-  position: relative;
 }
 
-/* Button Play, normal state and after hover state */
+/* Button Play */
 main #playButton,
 main #playButton:hover::after {
   padding: 30px;
@@ -49,7 +48,6 @@ main #playButton:hover::after {
   position: relative;
 }
 
-/* Button play with hover */
 main #playButton:hover {
   background-color: rgba(0, 128, 0, 0.548);
   border: 5px solid rgba(99, 50, 4, 0.555);
@@ -58,6 +56,7 @@ main #playButton:hover {
   transition-delay: 20ms;
 }
 
+/* Characters on button when hover */
 .robotButton {
   position: absolute;
   visibility: hidden;
@@ -106,6 +105,7 @@ main #playButton:hover .dannyButton {
   }
 }
 
+/* Characters players */
 .danny,
 .robot {
   position: absolute;
@@ -121,6 +121,7 @@ main #playButton:hover .dannyButton {
   left: var(--position0);
 }
 
+/* Positions to move the line race */
 :root {
   --position0: 3%;
   --position1: 25%;
@@ -129,6 +130,7 @@ main #playButton:hover .dannyButton {
   --position4: 100%;
 }
 
+/* Section buttons weapons */
 .choices {
   display: none;
   margin-top: 120px;
@@ -136,6 +138,7 @@ main #playButton:hover .dannyButton {
   margin: 10px auto;
 }
 
+/* Buttons weapons choices */
 .choices button {
   font-size: 1rem;
   padding: 15px 20px;
@@ -150,6 +153,7 @@ main #playButton:hover .dannyButton {
   background-color: white;
 }
 
+/* Sections with the text instructions */
 .startText {
   display: none;
   padding: 10px 50px;
@@ -176,6 +180,7 @@ h1 {
   line-height: 20px;
 }
 
+/* Button after instructions to play game */
 #start {
   padding: 10px 30px;
   font-size: 1rem;
@@ -196,12 +201,20 @@ main #start:hover {
   transition-delay: 20ms;
 }
 
+/* Div Section to display the result of the rounds */
 .resultMessage {
   width: 600px;
   gap: 20px;
   line-height: 1.5;
+  border-radius: 15px;
+  width: 600px;
+  color: gold;
+  padding: 20px;
+  text-align: center;
+  line-height: 1.5;
 }
 
+/* Div section to display the Winner screen */
 .winnerScreen {
   position: absolute;
   display: flex;
@@ -237,11 +250,123 @@ main #start:hover {
   line-height: 20px;
 }
 
-.resultMessage {
-  border-radius: 15px;
-  width: 600px;
-  color: gold;
-  padding: 20px;
-  text-align: center;
-  line-height: 1.5;
+/* Sandwich menu*/
+.infosection #infobtn {
+  background-color: rgba(128, 128, 128, 0);
+  border: none;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.infosection #infobtn:hover {
+  transform: scale(1.5);
+  -webkit-transition: transform 200ms ease-in-out;
+  -moz-transition: transform 200ms ease-in-out;
+  -ms-transition: transform 200ms ease-in-out;
+}
+
+#infoText {
+  padding: 30px;
+  line-height: 1.4;
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 700px;
+  width: 90%;
+  border-radius: 20px 0 20px 20px;
+  border: 5px outset gold;
+  position: fixed;
+  top: 125px;
+  right: 45px;
+  background-color: white;
+}
+
+.links {
+  gap: 15px;
+}
+
+#infoText.active {
+  display: flex;
+}
+
+/* Mobile versions */
+@media (max-width: 619px) {
+  main {
+    background-image: url(images/bgmobile.jpg);
+    background-size: cover;
+    min-width: inherit;
+    max-width: inherit;
+    height: inherit;
+  }
+
+  .danny {
+    top: 80vh;
+    bottom: -5vh;
+  }
+
+  .robot {
+    top: 67vh;
+    bottom: 5vh;
+  }
+
+  #playButton,
+  .startText,
+  .resultMessage {
+    transform: scale(0.7);
+  }
+
+  .choices {
+    transform: scale(0.9);
+    flex-wrap: wrap;
+  }
+  .startText {
+    margin: 0;
+    padding: 20px;
+    max-height: 800px;
+    margin: -60px -30px;
+  }
+
+  .startText ul {
+    padding: 0;
+  }
+
+  .resultMessage {
+    padding: 0;
+  }
+
+  .messageWinner,
+  .messageLoser,
+  .trophy {
+    transform: scale(0.8);
+  }
+
+  .trophy {
+    left: 20%;
+  }
+
+  .messageLoser,
+  .messageWinner {
+    max-width: 80vw;
+    margin-left: -40px;
+  }
+
+  #infoText {
+    right: 20px;
+  }
+}
+
+@media (max-width: 510px) {
+  .resultMessage {
+    flex-direction: column;
+    margin: -50px 0 -80px 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 365px) {
+  .choices {
+    flex-direction: row;
+  }
 }

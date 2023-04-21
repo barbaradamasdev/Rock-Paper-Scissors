@@ -1,3 +1,4 @@
+//Variables to catch document sections
 const button = document.querySelector('button');
 const main = document.querySelector('main');
 const choices = document.querySelector('.choices');
@@ -16,13 +17,12 @@ dannyButton.src = 'images/danny.png';
 dannyButton.className = 'dannyButton'
 button.appendChild(dannyButton);
 
-// Danny and robot
+// Danny and robot players
 var robot = new Image (100, 100);
 robot.src = 'images/robot.png';
 robot.className = 'robot'
 robot.style.left = 'var(--position0)';
-/* main.appendChild(robot); */ //add the image at the end of main
-button.before(robot);   //add the image before button, the firt element inside main
+button.before(robot);
 
 var danny = new Image (100, 100);
 danny.src = 'images/danny.png';
@@ -30,8 +30,7 @@ danny.className = 'danny'
 danny.style.left = 'var(--position0)';
 button.before(danny);
 
-
-//Variables
+//Variables used in functions
 let playerSelection;
 let computerSelection;
 let scoreReport = [];
@@ -40,24 +39,27 @@ let positionDanny;
 let positionRobot;
 let positionWinner;
 const options = ['rock', 'paper', 'knife'];
-
 const raceSong = document.createElement ('audio');
+const chooseYourWeapon = document.createElement ('h1'); 
+
 //Function to show instructions and weapons
 function start() {
+    //Hide button and change display
     button.style.display ='none';
     startText.style.display ='flex';
     startText.style.flexDirection ='column';
+
+    // Initial positions
     positionDanny = danny.style.left;
     positionRobot = robot.style.left;
 
+    // Song play
     raceSong.src = 'audio/raceSong.mp3';
     raceSong.autoplay = 'true';
     main.appendChild(raceSong);
-    
     raceSong.play();
 } 
 
-const chooseYourWeapon = document.createElement ('h1'); 
 //After instructions, function to show weapons choices
 function show () {
     //Hide text and button, show choices buttons
@@ -72,7 +74,7 @@ function show () {
     choices.before(chooseYourWeapon);
 }
 
-//Winner screen
+//Winner screen and Trophy image
 const winnerScreen = document.createElement('div');
 winnerScreen.className = 'winnerScreen';
 winnerScreen.style.display = 'none';
@@ -83,36 +85,45 @@ trophy.src = 'images/trophyWinner.png';
 trophy.className = 'trophy'
 winnerScreen.appendChild(trophy);
 
+//Function
 function theEnd () {
     danny.style.display ='none';
     robot.style.display ='none';
     
     startText.style.display = 'none'
     winnerScreen.style.display = 'inherit';
+
+    //End the race song
+    raceSong.currentTime = 0;
+    raceSong.pause();
+    raceSong.remove();
     
     if (winner === 'danny') {
+        //Message to show
         const messageWinner = document.createElement('h1');
         messageWinner.textContent = "You won! The robot was destroyed, you saved the world!";
         messageWinner.className = 'messageWinner';
         main.before(messageWinner);
         
+        //Song to play
         const winnerSound = document.createElement ('audio');
         winnerSound.src = 'audio/winnerSound.mp3';
         winnerSound.autoplay = 'true';
         winnerScreen.appendChild(winnerSound);
 
-        raceSong.currentTime = 0;
-        raceSong.pause();
-        raceSong.remove();
-
         winnerSound.play();
+        
+        //Change background
         winnerScreen.style.backgroundImage ='url(images/winnerScreenEnd.gif)'
+
     } else if (winner === 'robot') {
+        //Message to show
         const messageLoser = document.createElement('h1');
         messageLoser.textContent = "You lose! Humanity will be destroyed! Shame on you";
         messageLoser.className = 'messageLoser';
         main.before(messageLoser);
         
+        //Songs to play
         const loserSound = document.createElement ('audio');
         loserSound.src = 'audio/loserSound.mp3';
         loserSound.autoplay = 'true';
@@ -123,19 +134,17 @@ function theEnd () {
         loserSound2.autoplay = 'true';
         winnerScreen.appendChild(loserSound2);
 
-        raceSong.currentTime = 0;
-        raceSong.pause();
-        raceSong.remove();
-
         loserSound.play();
         loserSound2.play();
+
+        //Hide trophy and change background
         trophy.style.display = 'none';
         winnerScreen.style.backgroundImage ='url(images/loseScreenEnd.gif)'
     }
     
 }
 
-//COMPUTER - random roll function:
+//Computer random roll function:
 function getComputerSelection() {
     //Math.random = randomic number: 0.65436241685
     //* options.length = * 3 positions inside array
@@ -143,7 +152,7 @@ function getComputerSelection() {
     return computerSelection = options[Math.floor(Math.random() * options.length)];
 }
 
-//MOVE CHARACTERS
+//Move players
 function nextPosition () {
     if (winner === 'robot') {
         positionWinner = positionRobot
@@ -167,14 +176,16 @@ function nextPosition () {
     }
 }
 
-//PLAYROUND:
+//Playround:
+//Create the div for show the result (message and image)
 let resultMessage = document.createElement ('div');
 let message = document.createElement ('h1')
 let imageLose = new Image (250, 250);
+
 function playRound (input) {
     playerSelection = input;           
     computerSelection = getComputerSelection();
-    console.warn('Partida nova');
+    console.warn('New round');
     console.log('Danny choose: ' + playerSelection);      
     
     //This was a solution to avoid tied
@@ -183,6 +194,7 @@ function playRound (input) {
     }
     console.log('Robot choose: ' + computerSelection);
     
+    //Verify the winner
     switch (playerSelection) {
     case "rock":
         if (computerSelection === 'paper') {
@@ -200,6 +212,7 @@ function playRound (input) {
             resultMessage.appendChild(imageLose);
             /* End of message winner/loser of round */
 
+            //Console log just for verification
             console.log('You Lose! Paper beats Rock');  
             winner = 'robot';
 
@@ -326,5 +339,9 @@ function playRound (input) {
         }   
         break;
     }
-    
+}
+
+//Function to sandwich menu
+function toggleMenu () {
+    document.getElementById('infoText').classList.toggle('active');
 }
