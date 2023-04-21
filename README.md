@@ -1,7 +1,7 @@
 # Fight the robot - Mini game
 [The Odin Project]: Rock Paper Scissors
 
-![Design preview for the challenge](.Design-preview.jpg)
+![Design preview for the challenge](Design-preview.png)
 
 ## 🔗 Link
 
@@ -35,8 +35,7 @@ The idea was good and I know the execution could (always) be better, but I'm rig
   - with the prompt: 
     - "a cute character game , running. illustration, disney, pixar"
     - "a cute robot character game , running. illustration, disney, pixar"
-
-- [Live Version](https://barbaradamasdev.github.io/Rock-Paper-Scissors/)
+    
 ## 🐼 Author
 
 Bárbara Damasceno - barbaradamas.dev@gmail.com
