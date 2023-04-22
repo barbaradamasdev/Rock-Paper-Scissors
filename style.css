@@ -138,6 +138,11 @@ main #playButton:hover .dannyButton {
   margin: 10px auto;
 }
 
+.choices button,
+.startText h1 {
+  animation: boing 1s 1;
+}
+
 /* Buttons weapons choices */
 .choices button {
   font-size: 1rem;
@@ -160,6 +165,16 @@ main #playButton:hover .dannyButton {
   margin: 120px auto;
   background-color: rgba(168, 214, 235, 0.555);
   border-radius: 15px;
+  animation: boing 300ms 1;
+}
+
+@keyframes boing {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .instructionsText {
@@ -212,6 +227,7 @@ main #start:hover {
   padding: 20px;
   text-align: center;
   line-height: 1.5;
+  animation: boing 300ms 1;
 }
 
 /* Div section to display the Winner screen */
@@ -247,6 +263,7 @@ main #start:hover {
   padding: 20px;
   text-align: center;
   line-height: 20px;
+  animation: boing 1s 1;
 }
 
 /* Sandwich menu*/
@@ -257,6 +274,7 @@ main #start:hover {
   top: 30px;
   right: 30px;
   z-index: 1;
+  cursor: pointer;
 }
 
 .infosection #infobtn:hover {
@@ -271,7 +289,7 @@ main #start:hover {
   padding: 30px;
   line-height: 1.4;
   z-index: 1;
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 700px;
@@ -282,6 +300,8 @@ main #start:hover {
   top: 125px;
   right: 45px;
   background-color: white;
+  transform: translateX(800px);
+  transition: transform 1s ease-in-out;
 }
 
 .links {
@@ -289,7 +309,9 @@ main #start:hover {
 }
 
 #infoText.active {
-  display: flex;
+  animation: boing 300ms 1;
+  transform: translateX(0);
+  transition: transform 1s ease-in-out;
 }
 
 /* Mobile versions */
