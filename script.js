@@ -87,6 +87,10 @@ winnerScreen.appendChild(trophy);
 
 //Function
 function theEnd () {
+    const tryAgainText = document.createElement('button');
+    const messageWinner = document.createElement('h1');
+    const messageLoser = document.createElement('h1');
+
     danny.style.display ='none';
     robot.style.display ='none';
     
@@ -100,7 +104,6 @@ function theEnd () {
     
     if (winner === 'danny') {
         //Message to show
-        const messageWinner = document.createElement('h1');
         messageWinner.textContent = "You won! The robot was destroyed, you saved the world!";
         messageWinner.className = 'messageWinner';
         main.before(messageWinner);
@@ -116,9 +119,12 @@ function theEnd () {
         //Change background
         winnerScreen.style.backgroundImage ='url(images/winnerScreenEnd.gif)'
 
+        //Message try again to winner
+        tryAgainText.textContent = "Doesn`t make any sense because you already saved the world, but do you wanna try again?";
+        messageWinner.after(tryAgainText);
+        
     } else if (winner === 'robot') {
         //Message to show
-        const messageLoser = document.createElement('h1');
         messageLoser.textContent = "You lose! Humanity will be destroyed! Shame on you";
         messageLoser.className = 'messageLoser';
         main.before(messageLoser);
@@ -136,12 +142,41 @@ function theEnd () {
 
         loserSound.play();
         loserSound2.play();
-
+        
         //Hide trophy and change background
         trophy.style.display = 'none';
         winnerScreen.style.backgroundImage ='url(images/loseScreenEnd.gif)'
+
+        //Message try again to loser
+        tryAgainText.textContent = "Doesn`t make any sense because you already destroyed the world, but do you wanna try again?";
+        messageLoser.after(tryAgainText);
     }
-    
+
+    //Try again option
+        tryAgainText.className = 'tryAgainText';
+        tryAgainText.onclick = function () {
+            danny.style.display ='inherit';
+            robot.style.display ='inherit';
+            
+            startText.style.display = 'inherit'
+            winnerScreen.style.display = 'none';
+            messageLoser.style.display = 'none';
+            messageWinner.style.display = 'none';
+            tryAgainText.style.display = 'none';
+            resultMessage.style.display = 'none';
+            chooseYourWeapon.style.display = 'inherit';
+            raceSong.play();
+            
+            danny.style.left = 'var(--position0)';
+            robot.style.left = 'var(--position0)';
+            positionDanny = danny.style.left;
+            positionRobot = robot.style.left;
+            
+            start (); 
+        };
+        
+        // Function to reload page
+        // tryAgainText.onclick = function () {location.reload(start());};
 }
 
 //Computer random roll function:

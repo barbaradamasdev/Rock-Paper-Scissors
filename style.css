@@ -12,6 +12,7 @@ body {
   background-size: cover;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .flex {
@@ -156,6 +157,7 @@ main #playButton:hover .dannyButton {
 .choices button:hover {
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.082);
   background-color: white;
+  transform: scale(1.05);
 }
 
 /* Sections with the text instructions */
@@ -246,6 +248,9 @@ main #start:hover {
   left: 30%;
   right: 30%;
   top: 30%;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.863);
+  animation: boing 1s 1;
 }
 
 .messageWinner,
@@ -384,11 +389,6 @@ main #start:hover {
     right: 0;
     transform: scale(0.7);
   }
-
-  #infoText {
-    transform: scale(0.8);
-    right: 20px;
-  }
 }
 
 @media (max-width: 510px) {
@@ -405,14 +405,16 @@ main #start:hover {
   }
 }
 
-/* Alternative to phone with low height */
-@media (max-height: 670px) {
-  body {
-    overflow: hidden;
-  }
-
-  main {
-    background-position: bottom;
-    height: 95vh;
-  }
+.tryAgainText {
+  font-size: 0.7rem;
+  padding: 20px;
+  z-index: 1;
+  border-radius: 20px;
+  border: 5px outset gold;
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* to centralize */
+  text-align: center;
+  background-color: white;
 }
