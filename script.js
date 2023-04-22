@@ -66,8 +66,7 @@ function show () {
     choices.style.display ='inherit'; 
     instructionsText.style.display ='none';
     startButton.style.display ='none';
-    startText.style.backgroundColor = 'rgba(0, 0, 0, 0.767)';
-    startText.style.color = 'white';
+    startText.style.backgroundColor = 'rgba(255, 255, 255, 0.63)';
     
     //title 'Choose your weapon' before choices button
     chooseYourWeapon.textContent = 'Choose your weapon:';
@@ -215,7 +214,7 @@ function nextPosition () {
 //Create the div for show the result (message and image)
 let resultMessage = document.createElement ('div');
 let message = document.createElement ('h1')
-let imageLose = new Image (250, 250);
+let imageLose = new Image (200, 200);
 
 function playRound (input) {
     playerSelection = input;           

@@ -151,11 +151,13 @@ main #playButton:hover .dannyButton {
   margin: 10px;
   border-radius: 20px;
   border: none;
-  box-shadow: 1px 1px 30px 10px rgba(0, 0, 0, 0.151);
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.219);
 }
 
 .choices button:hover {
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.082);
+  border: 0.5px solid rgba(0, 0, 0, 0.082);
+  margin: 9px;
   background-color: white;
   transform: scale(1.05);
 }
@@ -168,6 +170,7 @@ main #playButton:hover .dannyButton {
   background-color: rgba(168, 214, 235, 0.555);
   border-radius: 15px;
   animation: boing 300ms 1;
+  border: 5px outset gold;
 }
 
 @keyframes boing {
@@ -222,14 +225,16 @@ main #start:hover {
 .resultMessage {
   width: 600px;
   gap: 20px;
-  line-height: 1.5;
   border-radius: 15px;
   width: 600px;
-  color: gold;
   padding: 20px;
   text-align: center;
   line-height: 1.5;
   animation: boing 300ms 1;
+}
+
+.resultMessage h1 {
+  font-size: 1rem;
 }
 
 /* Div section to display the Winner screen */
@@ -249,8 +254,10 @@ main #start:hover {
   right: 30%;
   top: 30%;
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.863);
+  /* background-color: rgba(0, 0, 0, 0.863); */
+  background-color: white;
   animation: boing 1s 1;
+  border: 5px outset gold;
 }
 
 .messageWinner,
@@ -260,9 +267,9 @@ main #start:hover {
   right: 20%;
   top: 65%;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.863);
+  border: 5px outset gold;
+  background-color: white;
   width: 600px;
-  color: gold;
   font-size: 1rem;
   border-radius: 15px;
   padding: 20px;
@@ -301,10 +308,10 @@ main #start:hover {
   width: 90%;
   border-radius: 20px 0 20px 20px;
   border: 5px outset gold;
+  background-color: white;
   position: fixed;
   top: 125px;
   right: 45px;
-  background-color: white;
   transform: translateX(800px);
   transition: transform 1s ease-in-out;
 }
@@ -317,6 +324,22 @@ main #start:hover {
   animation: boing 300ms 1;
   transform: translateX(0);
   transition: transform 1s ease-in-out;
+}
+
+.tryAgainText {
+  font-size: 0.7rem;
+  padding: 20px;
+  z-index: 1;
+  border-radius: 20px;
+  border: 5px outset gold;
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* to centralize */
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.61);
+  animation: boing 3s 1;
+  /* transition: animation 1s 1; */
 }
 
 /* Mobile versions */
@@ -397,24 +420,17 @@ main #start:hover {
     margin: -50px 0 -80px 0;
     width: auto;
   }
+
+  .tryAgainText {
+    bottom: -5%;
+    padding: 10px;
+    width: 70%;
+    transform: translate(-50%, -80%);
+  }
 }
 
 @media (max-width: 365px) {
   .choices {
     flex-direction: row;
   }
-}
-
-.tryAgainText {
-  font-size: 0.7rem;
-  padding: 20px;
-  z-index: 1;
-  border-radius: 20px;
-  border: 5px outset gold;
-  position: fixed;
-  bottom: 2%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* to centralize */
-  text-align: center;
-  background-color: white;
 }
