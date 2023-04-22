@@ -8,6 +8,7 @@
     <title>Fight the robot!</title>
 </head>
 <body>
+    <!-- MAIN SECTION -->
     <main class="flex">
         <button id="playButton" onclick="start();">Do you wanna play?</button>
         <div class="startText">
@@ -26,13 +27,32 @@
             <button id="start" onclick="show();">Ok, Let's go!</button>
             
             <div class="choices flex">
-                <button onclick="playRound('rock')"><img src="images/stone.png" style="width: 100px;"></button>
-                <button onclick="playRound('paper')"><img src="images/paper.png" style="width: 100px;"></button>
-                <button onclick="playRound('knife')"><img src="images/knife.png" style="width: 100px;"></button>
+                <button onclick="playRound('rock')"><img class="rockButton" src="images/stone.png" style="width: 100px;"></button>
+                <button onclick="playRound('paper')"><img class="paperButton" src="images/paper.png" style="width: 100px;"></button>
+                <button onclick="playRound('knife')"><img class="scissorsButton" src="images/knife.png" style="width: 100px;"></button>
             </div>
         </div>
     </main>
-    <script src="script.js"></script>
+
+    <!-- RESULT SECTION -->    
+    <div id="resultChoices">
+        <div class="left">
+            <img style="width: 150px" src="images/dannyhand.png" alt="">
+            <p>Danny<br>choose:</p>
+            <img id="choosedRockLeft" style="width: 100px; display: none;" src="images/stone.png">
+            <img id="choosedPaperLeft" style="width: 100px; display: none;" src="images/paper.png">
+            <img id="choosedScissorsLeft" style="width: 100px; display: none;" src="images/knife.png">
+        </div>
+        <div class="right">
+            <img class="inverted" style="width: 150px" src="images/robothand.png" alt="">
+            <p>Robot</br>choose:</p>
+            <img id="choosedRockRight" style="width: 100px; display: none;" src="images/stone.png">
+            <img id="choosedPaperRight" style="width: 100px; display: none;" src="images/paper.png">
+            <img id="choosedScissorsRight" style="width: 100px; display: none;" src="images/knife.png">
+        </div>
+    </div>
+
+    <!-- MENU INFO SECTION -->
     <section class="infosection">
         <img id="infobtn" onclick="toggleMenu()" src="images/sandwich menu.png">
         <nav id="infoText">
@@ -47,5 +67,6 @@
             <p>Coded by Barbara Damasceno</p>
         </nav>
     </section>
+    <script src="script.js"></script>
 </body>
 </html>

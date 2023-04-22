@@ -164,6 +164,7 @@ function theEnd () {
             tryAgainText.style.display = 'none';
             resultMessage.style.display = 'none';
             chooseYourWeapon.style.display = 'inherit';
+            resultChoices.style.display = 'none';
             raceSong.play();
             
             danny.style.left = 'var(--position0)';
@@ -224,63 +225,93 @@ function playRound (input) {
     
     //This was a solution to avoid tied
     if(playerSelection === computerSelection) {
-        computerSelection = getComputerSelection();
+        while (playerSelection === computerSelection) {
+            computerSelection = getComputerSelection();
+        }
     }
     console.log('Robot choose: ' + computerSelection);
-    
+
+    let resultChoices = document.getElementById("resultChoices");
+    resultChoices.style.display = 'inherit';
+
+    var rockLeft = document.getElementById("choosedRockLeft");
+    var paperLeft = document.getElementById("choosedPaperLeft");
+    var scissorsLeft = document.getElementById("choosedScissorsLeft");
+    var rockRight = document.getElementById("choosedRockRight");
+    var paperRight = document.getElementById("choosedPaperRight");
+    var scissorsRight = document.getElementById("choosedScissorsRight");
+
     //Verify the winner
     switch (playerSelection) {
-    case "rock":
-        if (computerSelection === 'paper') {
-            
-            /* Message winner/loser of round */
-            chooseYourWeapon.style.display ='none';
-            resultMessage.style.display ='flex';
-            resultMessage.className = 'resultMessage';
-            choices.before(resultMessage);
+        case "rock":
+            rockLeft.style.display = 'flex';
+            paperLeft.style.display = 'none';
+            scissorsLeft.style.display = 'none';
 
-            message.textContent = 'You lose, LOL! Sorry, choose the next one';
-            resultMessage.appendChild(message);
+            if (computerSelection === 'paper') {
+                rockRight.style.display = 'none';
+                paperRight.style.display = 'flex';
+                scissorsRight.style.display = 'none';
 
-            imageLose.src = 'images/robotWinning0.gif';
-            resultMessage.appendChild(imageLose);
-            /* End of message winner/loser of round */
+                /* Message winner/loser of round */
+                chooseYourWeapon.style.display ='none';
+                resultMessage.style.display ='flex';
+                resultMessage.className = 'resultMessage';
+                choices.before(resultMessage);
 
-            //Console log just for verification
-            console.log('You Lose! Paper beats Rock');  
-            winner = 'robot';
+                message.textContent = 'You lose, LOL! Sorry, choose the next one';
+                resultMessage.appendChild(message);
 
-            robot.style.left = nextPosition(winner);
-            positionRobot = robot.style.left;
+                imageLose.src = 'images/robotWinning0.gif';
+                resultMessage.appendChild(imageLose);
+                /* End of message winner/loser of round */
 
-            robot.style.transitionDuration = '1s';
-            return positionRobot;
+                //Console log just for verification
+                console.log('You Lose! Paper beats Rock');  
+                winner = 'robot';
+
+                robot.style.left = nextPosition(winner);
+                positionRobot = robot.style.left;
+
+                robot.style.transitionDuration = '1s';
+                return positionRobot;
         } else if (computerSelection === 'knife'){
-            /* Message winner/loser of round */
-            chooseYourWeapon.style.display ='none';
-            resultMessage.style.display ='flex';
-            resultMessage.className = 'resultMessage';
-            choices.before(resultMessage);
+                rockRight.style.display = 'none';
+                paperRight.style.display = 'none';
+                scissorsRight.style.display = 'flex';
 
-            message.textContent = 'You dit it! Nailed it! Choose the next one';
-            resultMessage.appendChild(message);
+                /* Message winner/loser of round */
+                chooseYourWeapon.style.display ='none';
+                resultMessage.style.display ='flex';
+                resultMessage.className = 'resultMessage';
+                choices.before(resultMessage);
 
-            imageLose.src = 'images/goodjob0.gif';
-            resultMessage.appendChild(imageLose);
-            /* End of message winner/loser of round */
+                message.textContent = 'You dit it! Nailed it! Choose the next one';
+                resultMessage.appendChild(message);
 
-            console.log('You Win! Rock beats Knife');  
-            winner = 'danny';
+                imageLose.src = 'images/goodjob0.gif';
+                resultMessage.appendChild(imageLose);
+                /* End of message winner/loser of round */
 
-            danny.style.left = nextPosition(winner);
-            positionDanny = danny.style.left;
+                console.log('You Win! Rock beats Knife');  
+                winner = 'danny';
 
-            danny.style.transitionDuration = '1s';
-            return positionDanny;
+                danny.style.left = nextPosition(winner);
+                positionDanny = danny.style.left;
+
+                danny.style.transitionDuration = '1s';
+                return positionDanny;
         }
         break;
     case "paper":
+        rockLeft.style.display = 'none';
+        paperLeft.style.display = 'flex';
+        scissorsLeft.style.display = 'none';
         if (computerSelection === 'knife') {
+            rockRight.style.display = 'none';
+            paperRight.style.display = 'none';
+            scissorsRight.style.display = 'flex';
+
             /* Message winner/loser of round */
             chooseYourWeapon.style.display ='none';
             resultMessage.style.display ='flex';
@@ -304,6 +335,10 @@ function playRound (input) {
             robot.style.transitionDuration = '1s';
             return positionRobot;
         } else if (computerSelection === 'rock'){
+            rockRight.style.display = 'flex';
+            paperRight.style.display = 'none';
+            scissorsRight.style.display = 'none';
+
             /* Message winner/loser of round */
             chooseYourWeapon.style.display ='none';
             resultMessage.style.display ='flex';
@@ -327,7 +362,14 @@ function playRound (input) {
         }
         break
     case "knife":
+        rockLeft.style.display = 'none';
+        paperLeft.style.display = 'none';
+        scissorsLeft.style.display = 'flex';
         if (computerSelection === 'rock') {
+            rockRight.style.display = 'flex';
+            paperRight.style.display = 'none';
+            scissorsRight.style.display = 'none';
+
             /* Message winner/loser of round */
             chooseYourWeapon.style.display ='none';
             resultMessage.style.display ='flex';
@@ -350,7 +392,11 @@ function playRound (input) {
             robot.style.transitionDuration = '1s';
             return positionRobot;
         } else if (computerSelection === 'paper'){
-             /* Message winner/loser of round */
+            rockRight.style.display = 'none';
+            paperRight.style.display = 'flex';
+            scissorsRight.style.display = 'none';
+            
+            /* Message winner/loser of round */
              chooseYourWeapon.style.display ='none';
              resultMessage.style.display ='flex';
              resultMessage.className = 'resultMessage';

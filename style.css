@@ -254,7 +254,6 @@ main #start:hover {
   right: 30%;
   top: 30%;
   border-radius: 20px;
-  /* background-color: rgba(0, 0, 0, 0.863); */
   background-color: white;
   animation: boing 1s 1;
   border: 5px outset gold;
@@ -339,10 +338,86 @@ main #start:hover {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.61);
   animation: boing 3s 1;
-  /* transition: animation 1s 1; */
+}
+
+#resultChoices {
+  display: none;
+  position: absolute;
+  top: 15%;
+  width: 100vw;
+}
+
+.left {
+  animation: boingResultLeft 1s 1;
+  background-color: white;
+  border-radius: 0 20px 20px 0;
+  border: 5px inset gold;
+  padding: 20px 20px 20px 0;
+  margin-left: -10px;
+  position: absolute;
+  text-align: right;
+  left: 0;
+}
+
+.right {
+  animation: boingResultRight 1s 1;
+  background-color: white;
+  border-radius: 20px 0 0 20px;
+  border: 5px inset gold;
+  padding: 20px 0 20px 20px;
+  margin-right: -10px;
+  text-align: left;
+  position: absolute;
+  right: 0;
+}
+
+.left p,
+.right p {
+  margin-bottom: 15px;
+}
+
+.inverted {
+  transform: scaleX(-1);
+}
+
+#choosedRockLeft,
+#choosedPaperLeft,
+#choosedScissorsLeft {
+  animation: boingResultLeft 500ms 1;
+}
+
+#choosedRockRight,
+#choosedPaperRight,
+#choosedScissorsRight {
+  animation: boingResultRight 500ms 1;
 }
 
 /* Mobile versions */
+@media (max-width: 1066px) {
+  .startText {
+    max-width: 60vw;
+    padding: 10px;
+  }
+
+  .resultMessage {
+    max-width: 100%;
+  }
+
+  .choices {
+    transform: scale(0.8);
+    margin: auto;
+    max-width: 70%;
+  }
+
+  .right {
+    transform: scale(0.8) translate(20px);
+  }
+
+  .left {
+    transform: scale(0.8) translate(-20px);
+  }
+}
+
 @media (max-width: 619px) {
   main {
     background-image: url(images/bgmobile.jpg);
@@ -369,14 +444,33 @@ main #start:hover {
   }
 
   .choices {
+    margin: -10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+    transform: scale(0.7);
+    margin: -30px auto 0;
+    width: 100%;
+  }
+
+  .choices > button {
+    max-width: 50%;
+    padding: 5px;
+    margin: 3px;
+  }
+
+  .instructionsText {
+    max-height: 100px;
+  }
+
+  /* .choices {
     transform: scale(0.9);
     flex-wrap: wrap;
-  }
+  } */
   .startText {
-    margin: 0;
     padding: 20px;
     max-height: 800px;
-    margin: -60px -30px;
+    margin: 0 auto;
   }
 
   .startText ul {
@@ -412,12 +506,21 @@ main #start:hover {
     right: 0;
     transform: scale(0.7);
   }
+
+  #infoText {
+    padding: 5px;
+  }
+
+  #infoText > p,
+  #infoText > h3,
+  #infoText > h4 {
+    transform: scale(0.8);
+  }
 }
 
 @media (max-width: 510px) {
   .resultMessage {
     flex-direction: column;
-    margin: -50px 0 -80px 0;
     width: auto;
   }
 
@@ -427,10 +530,70 @@ main #start:hover {
     width: 70%;
     transform: translate(-50%, -80%);
   }
+
+  .startText {
+    min-width: 100vw;
+    padding: 0px;
+    margin: 220px 0 0 0;
+  }
+
+  .left,
+  .right {
+    bottom: -26vh;
+    transform: scale(0.6);
+  }
+
+  .left {
+    transform: translateX(90);
+    animation: boingResultLeft2 1s 1;
+    left: -30px;
+  }
+  .right {
+    animation: boingResultRight2 1s 1;
+    right: -30px;
+  }
+
+  .left image,
+  .right image {
+    transform: scale(0.7);
+  }
+
+  #infobtn {
+    bottom: 92vh;
+  }
 }
 
-@media (max-width: 365px) {
-  .choices {
-    flex-direction: row;
+/* Animations for results weapons */
+@keyframes boingResultLeft {
+  0% {
+    transform: translateX(-800px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes boingResultRight {
+  0% {
+    transform: translateX(800px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes boingResultLeft2 {
+  0% {
+    transform: translateX(-800px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes boingResultRight2 {
+  0% {
+    transform: translateX(800px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
