@@ -5,7 +5,7 @@
 
 ## 🔗 Link
 
-- [Live Version](https://barbaradamasdev.github.io/Rock-Paper-Scissors/)
+- [Live Version](https://calm-puffpuff-834687.netlify.app/)
 
 ## ⚔️ The challenge
 
